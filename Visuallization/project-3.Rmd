@@ -1,0 +1,59 @@
+---
+title: "Project-3"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+df = read.csv("train.csv")
+library(ggplot2)
+library(gridExtra)
+library(tabplot)
+library(lsr)
+library(corrplot)
+library(dplyr)
+```
+
+```{r }
+factorLevel <- list()
+a <- file("data_description.txt", open="r")
+f <-readLines(a)
+for (line in f){
+  if(!grepl("^[[:blank:]]", line) & grepl(": ", line)) {
+    col_name <<- trimws(gsub(":.*", "", line))
+  } else {
+    level <- trimws(gsub("\t.*", "", line))
+    if (level != "") {
+      factorLevel[[col_name]] <- c(factorLevel[[col_name]], level)
+    }
+  }
+}
+close(a)
+
+for (i in names(df)[-1]) {
+  if (i %in% names(factorLevel)) {
+    df[[i]] <- factor(df[[i]], 
+                                     levels = factorLevel[[i]])
+  } else {
+    df[[i]] <- as.numeric(df[[i]])
+  }
+}
+print(factorLevel[1:6])
+
+
+
+```
+
+```{r }
+
+matrixplot <- matrix(names(df)[1:length(df)-1], nrow = 8)
+for (i in 1:ncol(matrixplot)) {
+  tableplot(df, 
+            select_string = c(matrixplot[,i], "SalePrice"), 
+            sortCol = "SalePrice", decreasing = TRUE, 
+            nBins = 30)
+}
+```
+
