@@ -1,0 +1,81 @@
+Column_name,correlate with,correlation level _1-5_,Type,description,relation with price,comment,handle,delete,potential use (if not deleted) _1-5_
+Id,,,,,,,,_,0
+MSSubClass,HouseStyle,5,c,______,_________,"_HouseStyle____,____",__50___col,__,2
+HouseStyle,MSSubClass,5,c,______,_________,_MSSubClass____,,__,2
+MSZoning,Neighborhood,3,c,______,_________,,rm___col,,4
+LotFrontage,multi columns,2,n,______,___,,,,3
+LotArea,area related,2,n,____,____variance_,,,,3
+Street,,0,c,____,,____________6rows,,_,1
+Alley,neighborhood,2,c,__,_________,">80% missing data,_street_____",,,2
+LotShape,,1,c, ____,_________,,,,3
+LandContour,landslope,4,c,______,____,_landslope__,,____,1
+LandSlope,LandContour,4,c,____,____,_countour__,,____,1
+Utilities,,,c,,,__,,_,0
+LotConfig,,1,c,____,___,,,,2
+Neighborhood,MSZoning,3,c,neighbor__,,___________,,___,2
+Condition1,,1,c,____,___,,____condition2combine ,,2
+Condition2,,2,c,_______condition1__________,,condition1________condition1combine ,____condition1combine,,2
+BldgType,,1,c,____,,_____,,,1
+OverallQual,qual related ,4,c,______,___,___catogorical __ numerical,___catogorical __ numerical,,5
+OverallCond,bsmtqual,-3,c,______,__,__make sense,,,3
+YearBuilt,"garageyrbuilt_ yearremoadd, overallqual","5,4",n,____,__,__column___overallcond___,,,4
+YearRemodAdd,"garageyrbuilt_ yearbuilt, overallqual",4,n,______________,__,___yearbuilt__,"___col, _________________",____,4
+RoofStyle,roofmatl,3,c,____,__________,,hip _____col,,4
+RoofMatl,"poolqc,roofstyle",3,c,____,,,,___,1
+Exterior1st,Exterior2st,4,c,______,__,,____Exterior2st__,,3
+Exterior2st,Exterior1st,4,c,______2,__,,____Exterior1st__,,3
+MasVnrType,,1,c,____,__,,,,4
+MasVnrArea,overallqual,3,n,______,__,,,,4
+ExterQual,qual related ,4,c,______,__,Qual______,,__,4
+ExterCond,OverallCond,2,c,______,___,,___OverallCond__,___,1
+Foundation,"neighborhood,MSSubClass","3,2",c,____,__,,,,4
+BsmtQual,qual related ,4,c,_____,__,Qual______,missing______,__,4
+BsmtCond,BsmtQual_centralair,3,c,_____,____,____ _____bsmtqual__,,___,2
+BsmtExposure,,2,c,Refers to walkout or garden level walls,__,,missing______,,4
+BsmtFinType1,BsmtCond_BsmtExposure,2,c,_____1,__,,GLQ____col,,4
+BsmtFinSF1,"BsmtFullBath_BsmtUnfBath, Totalbsmtsq","4,-4,3",n,_____1__,__,_______,,,4
+BsmtFinType2,,,c,_____2,,,__BsmtFinType1____,____,1
+BsmtFinSF2,,,n,_____2__,,_______,__BsmtFinSF1____,____,1
+BsmtUnfSF,BsmtFinSF1_BsmtFullBath,(-3_-2),n,_____,___,,,,2
+TotalBsmtSF,"1stflrsq, other area","4,3",n,______,___,_________,,__,4
+Heating,,1,c,____,___,_____,,__,2
+HeatingQC,qual related ,"4,3",c,______,__,Qual______,,__,4
+CentralAir,"pavedrive, garage cond",4,c,____,__,,N____col,,4
+Electrical,,1,c,____,__,,FuseA FuseF _____col,,3
+1stFlrSF,"area related_overallqual, lotfrontage","4,3",n,____,___,_______,____GrLivArea__,__,5
+2ndFlrSF,"Grlivearea, halfbath,totrmsabvgrd,bedrmsabvgrd","4,3",n,____,__,________var__0__,____GrLivArea__,__,3
+LowQualFinSF,,1,n,_______,___,,,___,1
+GrLivArea,area related,"5,4",,_________,___,__________col___,,__,5
+BsmtFullBath,BsmtFinSF1,4,n,________,__,var__0__,,,3
+BsmtHalfBath,,1,n,________,___,,,___,1
+FullBath,multi columns,"4,3",n,_____,__,__col___,,,3
+HalfBath,2ndFlrSF_GrLivArea,"4,3",n,_____,__,var__0__,,,2
+BedroomAbvGr,"totrmsabvgrd, 2ndFlrSF, GrLivArea","4,3",n,_____,____,,,,2
+KitchenAbvGr,MSSubClass,3,n,_____,___,______.____,,,2
+KitchenQual,"qual related, centralair","4,3,-2",c,____,__,,,,4
+TotRmsAbvGrd,GrLivArea_BedroomAbvGr_2ndFlrSF_FullBath,"4,3",n,______,__,,____GrLivArea__,,4
+Functional,,1,c,Home functionality (Assume typical unless deductions are warranted),___,,,_,1
+Fireplaces,area related,3,n,___,__,______,,__,3
+FireplaceQu,qual related ,2,c,____,__,Qual______,missing______,,4
+GarageType,"neighborhood,MSSubClass,Street",2,c,____,__,,,,4
+GarageYrBlt,"garage related, yearbuilt, fullbath","4,5,3",n,_____,__,_yearbuilt___,,__,4
+GarageFinish,qual related ,3,c,________,__,Qual______,missing______,,4
+GarageCars,"GarageArea, Qual related, area related","5,4,3",n,____,__,__GarageArea__________,,__,4
+GarageArea,"GarageCars, Qual related, area related","5,4,3",n,____,__,__GarageCars__________,,__,4
+GarageQual,"GarageCond,Centralair","4, -3",c,____,__,__GarageCond__,missing______,__,3
+GarageCond,"GarageQual, centralair","4, -3",c,____,__,__GarageQual__,missing______,__,3
+PavedDrive,"GarageCond,GarageQual,Centralair","3,3,-3",c,______,__,,combine N and P ____,,4
+WoodDeckSF,"yearbuilt, overallqual, multi col,","2,1",n,_____,__,,,,3
+OpenPorchSF,"yearbuilt, overallqual, area related",3,n,______,__,,,,3
+EnclosedPorch,yearbuilt,"(-3,2)",n,______,____,,,,2
+3SsnPorch,,1,n,______,___,,,_,1
+ScreenPorch,,1,n,_______,___,,,_,1
+PoolArea,,1,n,____,__,_____,,___,1
+PoolQC,,,n,____,,99%missing,,_,0
+Fence,exterqual,3,c,____,___,,,___,2
+MiscFeature,,,c,____,,95%missing,,_,1
+MiscVal,,,n,_______,___,_MiscFeature__ ________,,_,1
+MoSold,YrSold,-2,n,____,_____,,,_,1
+YrSold,MoSold,-2,n,____,___________,______________mosold__,,___,
+SaleType,SaleCondition,3,c,_____,__,____SaleCondition__,,__,4
+SaleCondition,SaleType,3,c,_____,__,____saletyoe__,,__,4
